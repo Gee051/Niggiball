@@ -1,0 +1,21 @@
+# Python files
+*.pyc
+__pycache__/
+
+# Django-specific
+db.sqlite3
+*.log
+
+# Virtual environment
+env/
+venv/
+niggiball_env/
+
+# Environment variables
+.env
+
+# Node.js
+node_modules/
+
+# Secret Key
+secrets.json

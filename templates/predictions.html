@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niggiball Predictions</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main heading styling */
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        /* Subheading styling */
+        h2 {
+            font-size: 1.8em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Styling for the table */
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table header styling */
+        th {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Table cell styling */
+        td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            color: #333;
+        }
+
+        /* Spacing for the table */
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Add space between rows */
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Total predictions counter styling */
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #666;
+        }
+
+        /* Responsive design for mobile */
+        @media screen and (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            th, td {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>NIGGIBALL</h1>
+    <h2>Upcoming Match Predictions</h2>
+
+    {% if error_message %}
+        <p style="color: red; text-align: center;">{{ error_message }}</p> <!-- Display error message in red -->
+    {% else %}
+        <p>Total predictions: {{ predictions|length }}</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>League</th>
+                    <th>Predicted Outcome</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                <tr>
+                    <td>{{ prediction.home_team }}</td>
+                    <td>{{ prediction.away_team }}</td>
+                    <td>{{ prediction.date|date:"F d, Y" }}</td> <!-- Show the formatted date -->
+                    <td>{{ prediction.time|date:"g:i a" }}</td> <!-- Show the formatted time -->
+                    <td>{{ prediction.league }}</td>
+                    <td>{{ prediction.predicted_outcome }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No predictions available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+</body>
+</html>
